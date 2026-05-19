@@ -1,0 +1,202 @@
+% !TEX root = main.tex
+
+\section{Explicación respuestas}
+
+\begin{enumerate}
+
+\item Que ocurre en un protocolo por turnos si un nodo retiene el token mas tiempo del permitido?
+Sin mecanismo de protección: los demás nodos sufren hambruna(starvation), con THT (Token holding timer), el token se libera al vencer el timer aunque el nodo no haya terminado.
+
+\item Que problema mitiga RTS/CTS en WiFi?
+El problema del nodo oculto: dos estaciones que no se escuchan entre sí pero si al AP \textbf{Access point} pueden transmitir simultáneamente causando colisión; RTS/CTS reserva el canal alertando a todos los nodos en rango del AP.
+
+\item Por qué la dirección MAC no cambia cuando el host cambia de red?
+Porque la MAC está grabada en la ROM de la NIC (hardware) e identifica la interfaz, no la red; lo que cambia es la IP asignada por el nuevo DHCP.
+
+\item En que tipo de red es preferible un esquema basado en turnos frente a CDMA?
+En redes \textbf{industriales} con nodos fijos que requieren latencia máxima garantizada (tiempo real duro) como PLCs en una linea de ensamblaje.
+
+\item Por qué CDMA puede considerarse mas flexible que un esquema por turnos?
+CDMA permite acceso simultáneo sin coordinación centralizada: múltiples usuarios transmiten en el mismo canal usando códigos ortogonales; agregar o quitar nodos no requiere reconfigurar turnos.
+
+\item En qué aplicación real es el CRC indispensable?
+En discos duros y SSDs; ya que cada sector incluye in CRC para detectar corrupción silenciosa al leer.
+
+\item Que mejoras trajo 802.11ac respecto a 802.11n en terminos de agregación de canales?
+
+802.11ac amplió los cnales de 40 MHz hasta 80 y 160 MHz, solo en 5 GHz, añadió 256-QAM, 8 streams espaciales y MU-MIMO downlink, velocidad teorica hasta 6.93 Gbps.
+
+\item En que consiste un ataque de ARP Spoofing?
+El atacante envía ARP replies falsos no solicitados mapeando su MAC a la IP de la victima o del gateway, convirtiendose en man-in-the-middle.
+
+\item Por qué el checksum puede fallar al detectar ciertos patrones de error?
+
+Porque si dos errores se cancelan en la suma (uno incrementa en k y otro decrementa en k), el total no cambia
+
+\item Cuales son dos servicios que ofrece la capa de enlace en una red local?
+Entramado (framing) y control de acceso al medio (MAC)
+
+\item Por qué ARP no requiere un servidor centralizado?
+Porque usa el broadcast de la LAN local; la pregunta llega a todos los nodos del segmento y el dueño de la IP responde directamente, \textbf{sin intermediario}
+
+\item Que caracteristica hace a 802.11be (WIFI 7) especialmente relevante para aplicaciones multimedia?
+
+Multi-link operation (MLO) transmite y recibe simultaneamente en multiples bandas (2.4, 5 y 6 GHz) garantizando latencia ultra-baja y alta resiliencia para streaming 8K, VR/AR y gaming en la nube.
+
+\item Como mejora RTS/CTS el comportamiento de CSMA/CA cuando existe un nodo oculto?
+
+El emisor envía un RTS pequeño al AP, el AP responde con CTS en broadcast; todos los nodos que escuchan el CTS (incluido el nodo oculto) saben que el canal está reservado y esperan.
+
+\item Por qué 802.11 usa CSMA/CA en lugar de CSMA/CD?
+
+Porque una radio no puede transmitir y recibir simultaneamente en la misma frecuencia, no puede detectar colisiones mientras transmite, por eso previene CA en lugar de detectar CD.
+
+\item Por qué se requiere trunking para interconectar varios switches con multiples VLANs?
+
+Para transportar tramas de varias VLANs por un solo enlace fisico etiquetandolas con 802.1Q, evitando necesitar un cable fisico separado por cada VLAN.
+
+\item Como mejora una VLAN la seguridad en una red corporativa?
+
+Separando el tráfico en dominios de broadcast aislados; las tramas de finanzas no llegan a RRHH sin pasar por el router (que aplica ACLs/firewall)
+
+\item que hace un switch cuando recibe una trama con destino desconocido?
+La inunda(flood) por todos los puertos excepto el de entrada, garantizando que le destino la reciba y permitiendo al switch aprender el puerto del destino cuando responda.
+
+\item por qué los switches pueden operar en modo full-duplex mientras los hubs no?
+porque cada enlace switch-host es punto a punto dedicado sin bus compartido; el switch puede recibir de A mientras transmite a B simultaneamente, eliminando colisiones y duplicando el thorughput efectivo del enlace.
+
+\item En CSMA/CD, que sucede cuando dos hosts detectan simultaneamente una colisión?
+
+Ambos paran, emiten una señal jam de 32 bits y aplican el algoritmo de backoff exponencial binario.
+
+\item cuales son dos diferencias clave entre 802.11b y 802.11g en velocidad y compatibilidad?
+
+802.11b: 11 Mbps con DSSS en 2.4 GHz. 802.11g: 54 Mbps con OFDM en 2.4 GHz y retrocompatible con 802.11b (aunque la presencia de clientes b reduce el throughput de los clientes g por el mecanismo de protección)
+
+\item Por qué CSMA/CD funciona en ethernet tradicional pero no en redes wi-fi?
+en ethernet, la NIC puede escuchar el cable mientras transmite y detectar colisiones. En wi-fi la radio no puede transmitir y recibir simultaneamente en la misma frecuencia.
+
+\item Por qué CRC es adecuado para enlaces ruidosos como redes inalambricas?
+
+Porque usa división de polinomios en GF(2) y detecta garantizadamente todas las rafagas de error de hasta r bits.
+
+\item por qué la trama 802.11 contiene mas direcciones que la trama ethernet?
+
+porque involucra 3 actores (cliente, AP, destino en red cableada): Addr1=AP receptor, Addr2=cliente transmisor, Addr3=destino final en la red cableada; el AP necesita Addr3 para saber a quién reenviar tras desencapsular
+
+\item cual es el rol de la NIC en el funcionamiento de la capa de enlace?
+encapsula datagramas en tramas, calcula el FCS, gestiona CSMA y almacena la dirección MAC en ROM.
+
+\item cual es la función del preámbulo de ethernet?
+permite a la NIC receptora sincronizar su reloj con el transmisor (7 bytes) y marca el inicio de la trama como el SFD (1 byte, 10101011)
+
+\item que funcion cumple el tag 802.1q en una trama ethernet?
+identifica a que VLAN pertenece la trama mediante el VID de 12 bits
+
+\item que información transporta el beacon frame de un AP?
+B
+SSID, BSSID (MAC del AP), timestamp de sincronización, capacidades soportadas (velocidades, seguridad WPA2/WPA3), canal activo, intervalo de beacon y TIM (mapa de tráfico para modo ahorro de energía)
+
+\item sistema con paridad par. Transmisor envía 1101001. Receptor recibe 1100001. Se detecta el error?
+Si, el dato recibido tiene 3 unos (impar) y la paridad par esperaba cantidad par
+
+\item En 802.11ax (Wi-Fi 6), ¿cómo ayuda OFDMA a mejorar la eficiencia en redes densas?
+B
+Dividiendo el canal en Resource Units (RUs) asignables a múltiples clientes simultáneamente en la misma transmisión, en lugar de que un solo cliente use todo el canal como en OFDM
+
+\item en qué escenario el FCS detecta un error que ni paridad ni checksum detectarían?
+Una ráfaga de interferencia electromagnética que altera 20 bits consecutivos: paridad (número par, no detecta) y checksum (pueden cancelarse) fallan, pero CRC-32 detecta garantizadamente todas las ráfagas <= 32 bits
+
+\item qué es un BSS y cómo se relaciona con un AP?
+Basic Service Set: unidad fundamental de 802.11 formada por un AP (nodo central, BSSID = su MAC) y todas las estaciones asociadas a él; toda comunicación entre clientes pasa por el AP
+
+\item que significa que un checksum sea de complemento a uno?
+Que el checksum es la inversión de todos los bits de la suma, y la verificación da todo unos si no hay error
+
+\item por qué la falta de control de congestión en Ethernet no es un problema en redes conmutadas modernas?
+porque TCP detecta las pérdidas (timeout o ACKs duplicados) y reduce su ventana de congestión, gestionando la congestión en la capa de transporte
+
+\item por qué 802.11n introdujo MIMO y cómo impactó en el rendimiento de Wi-Fi?
+MIMO usa múltiples antenas para enviar varias corrientes de datos espaciales simultáneamente (spatial multiplexing) y para diversidad anti-multipath; pasó de 54 Mbps (802.11g) a hasta 600 Mbps teóricos con 4 streams en 40 MHz
+
+\item por qué un enlace punto a punto como PPP no necesita mecanismos de arbitraje del medio?
+porque solo hay dos nodos en el enlace, por lo que no puede haber colisión
+
+\item por qué el checksum es más robusto que la paridad simple?
+Porque opera palabra a palabra (grupos de 16 bits) y detecta errores que afectan el valor numérico, incluyendo patrones de error doble que la paridad ignora
+
+\item compare token passing con CDMA en términos de eficiencia en redes con baja carga.
+
+CDMA es más eficiente con baja carga: cualquier nodo transmite al instante. Token desperdicia tiempo haciendo circular el token por nodos inactivos
+\item nn switch recibe una trama en un puerto cuyo origen ya está registrado en otro puerto. ¿Qué ocurre?
+El switch actualiza la tabla MAC con el nuevo puerto, asumiendo que el host se reconectó o cambió de ubicación
+
+\item en qué escenario token passing reduce la latencia respecto a CDMA?
+En redes con alta carga y transmisión de bloques grandes: token garantiza el canal completo sin interferencia MAI, mientras CDMA con muchos usuarios simultáneos degrada por interferencia de acceso múltiple
+
+\item como usa un host A el protocolo ARP para conocer la MAC de un host B?
+A envía un ARP Request en broadcast (FF-FF-FF-FF-FF-FF) con la IP de B; B responde con un ARP Reply unicast con su MAC; A guarda la entrada en su caché
+
+\item qué significa que un error sea 'divisible por el polinomio generador'?
+Que el patrón de error E(x) es múltiplo de G(x), por lo que el residuo de la división sigue siendo 0 y el error no se detecta
+
+\item por qué Ethernet se considera una tecnología de 'mejor esfuerzo'?
+Porque no garantiza entrega, orden ni latencia: si el switch descarta una trama por buffer lleno, no hay retransmisión a nivel de enlace
+
+\item qué sucede si el campo de tipo/longitud de la trama Ethernet no concuerda con el tamaño real del payload?
+el receptor puede leer bytes de la trama siguiente (runt frame) o ignorar datos útiles; el FCS normalmente detecta la inconsistencia y descarta la trama
+
+\item por qué los switches permiten dominios de colisión más pequeños que los hubs?
+Porque el switch conmuta trama a trama y cada puerto es su propio dominio de colisión dedicado (full-duplex posible), mientras el hub crea un único dominio de colisión para todos los puertos
+
+\item En CSMA/CA, ¿cómo ayuda el mecanismo de backoff aleatorio a reducir colisiones?
+Cada nodo sortea un contador aleatorio y lo decrementa solo mientras el canal está libre; el primero en llegar a 0 transmite, los demás congelan su contador
+
+\item qué sucede si una caché ARP contiene una entrada obsoleta?
+
+Las tramas se envían a la MAC antigua: el host incorrecto las recibe o se pierden hasta que la entrada expire y se refresque con un nuevo ARP
+
+\item por qué ARP se implementa en la frontera entre la capa de enlace y la capa de red?
+Porque traduce IPs (capa 3) a MACs (capa 2): la capa de red necesita la MAC para construir la trama
+
+\item en qué escenario el uso de paridad simple es suficiente?
+En teclados PS/2 o interfaces UART de baja velocidad en entornos controlados donde la probabilidad de error doble es despreciable
+
+\item ¿En qué escenario la detección de errores es fundamental aunque la corrección se haga en capas superiores?
+
+En streaming de video UDP sobre Wi-Fi: detectar la trama dañada evita entregar basura a la aplicación
+
+\item ¿Cómo aprende un switch la tabla MAC cuando está inicialmente vacía?
+Al recibir una trama, aprende la MAC origen y su puerto de entrada; si la MAC destino es desconocida, inunda por todos los demás puertos; las respuestas completan la tabla
+
+\item ¿Por qué se afirma que la capa de enlace está 'cercana al hardware'?
+Porque su implementación reside en la NIC (hardware/firmware), no en el procesador principal
+
+\item ¿Qué problema se evitaría al usar VLANs en una red universitaria con miles de usuarios?
+Tormentas de broadcast: sin VLANs, un ARP Request se replica a los miles de hosts del segmento; con VLANs, el broadcast queda confinado a grupos pequeños
+
+\item ¿Qué ocurre si un switch recibe una trama tagged 802.1Q en un puerto configurado como access?
+La descarta para prevenir ataques de VLAN hopping (double-tagging)
+
+\item ¿Por qué Wi-Fi usa CSMA/CA en lugar de CSMA/CD? Describe el mecanismo.
+Porque no puede detectar colisiones; en cambio previene: escucha el canal, espera DIFS, aplica backoff aleatorio, transmite y espera ACK
+
+\item ¿Cuándo la paridad simple NO puede detectar un error?
+Cuando se alteran dos bits (número par de errores)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}

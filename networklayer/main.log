@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.22)  18 MAY 2026 21:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.22)  18 MAY 2026 23:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -127,17 +127,23 @@ File: comparacion.png Graphic file (type png)
 <use comparacion.png>
 Package pdftex.def Info: comparacion.png  used on input line 25.
 (pdftex.def)             Requested size: 180.0pt x 94.68358pt.
-) [5 <./comparacion.png>] (./main.aux)
+)
+(./cuestionario.tex [5 <./comparacion.png>] [6] [7] [8] [9] [10] [11]) [12]
+(./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 1375 strings out of 467525
- 22647 string characters out of 5418982
- 440756 words of memory out of 5000000
- 30312 multiletter control sequences out of 15000+600000
+ 1381 strings out of 467525
+ 22766 string characters out of 5418982
+ 441756 words of memory out of 5000000
+ 30315 multiletter control sequences out of 15000+600000
  632622 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,435b,238s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -147,10 +153,10 @@ Here is how much of TeX's memory you used:
 usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
 local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (5 pages, 1177411 bytes).
+Output written on main.pdf (12 pages, 1193753 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
+ 82 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
