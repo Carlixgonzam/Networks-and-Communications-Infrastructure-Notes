@@ -19,18 +19,47 @@ El \textbf{Control de acceso a los medios} consiste en que los protocolos en la 
 
 Estas técnicas de control de acceso a lso medios definen si los nodos comparten los medios y de que manera lo hacen.
 
-\subsection{Topología fisica}
-Se refiere a las conexiones fisicas e identifica como se interconectan los nodos de la infraestructura. e.g (estrella, punto a punto, arbol), etc.
-
 \begin{enumerate}
-\item La \textbf{topología lógica}: se refiere a la forma en que una red transfiere tramas de un nodo al siguiente. Esta disposición consta de conexiones virtuales entre los nodos de una red. Los protocolos de capa de enlace de datos definen estas rutas de señales logicas.
 
-
+\item La \textbf{Topología fisica}: se refiere a las conexiones fisicas e identifica como se interconectan los nodos de la infraestructura. e.g (estrella, punto a punto, arbol), etc.
+\item La \textbf{Topología lógica}: se refiere a la forma en que una red transfiere tramas de un nodo al siguiente. Esta disposición consta de conexiones virtuales entre los nodos de una red. Los protocolos de capa de enlace de datos definen estas rutas de señales logicas.
 
 \end{enumerate}
 
-En la vida real, hay dos servicios que ofrece la capa de enlace en una red local:
+\section{Formato de la trama de capa de enlace}
 
+Trama [Encabezado, Paquete con datos, Cola]. En el encabezado contiene el inicio, dirección, tipo y control. Y en la cola, detección de errores y detección.
+
+\textbf{Existe un patron de bits al inicio especifico para denotar el inicio de una trama} y \textbf{Un patron de bits especifico para denotar el final de una trama}.
+
+\subsection{Trama de capa de enlace}
+Los protocolos de la capa de enlace de datos regulan como se le da formato a una trama para utilizarla en diferentes medios.
+En cada salto de la ruta, un dispositivo acepta la trama de un medio, la desencapsula y luego envia los paquetes en una nueva trama.
+Los encabezados de cada trama se formatean para el medio especifico que cruzará.
+
+El \textbf{NIC} va cambiando de acuerdo al viaje que tome. Es decir, cuando pasa desde un pc, hacia un router y luego hacia otro router, el NIC (NIC Destino, NIC Origen, IP origen, IP destino) van cambiando. \textit{SOLO LAS NICs CAMBIAN}.
+
+\section{Estándares de capa de enlace}
 \begin{enumerate}
-\item 
+\item 802.2: control de enlace logico
+\item 802.3: ethernet
+\item 802.4: token bus
+\item 802.5: token ring
+\item 802.11: Wifi
+\item 802.15: Bluetooth, ultrawdeband, zigbee
+\item 802.16: WiMax
+
+Hay mas pero me da pereza escribir toda la tabla...
 \end{enumerate}
+
+\section{Metodos de control de acceso al medio}
+\subsection{Acceso por contienda}
+Las estaciones pueden transmitir en cualquier momento, existen colisiones y existen mecanismo para resolver la contienda por los medios.
+Las tecnologías que se usan son: CSMA/CD para redes ethernet 802.3 y CSMA/CA para redes inalambricas 802.11
+\subsection{Acceso controlado}
+Transmite una sola estación a la vez, los dispositivos que desean transmitir deben esperar su turno, \textbf{no hay colisiones} y es posible que utilice un metodo de paso de tokens.
+Las tecnologías usadas son \textit{Token Ring 802.5} e interfaz de datos distribuida por fibra.
+
+El \textbf{CSMA/CD} es el acceso multiple por deteccion de portadora y detección de colisiones. Este controla el acceso a los medios compartidos y si hay una colisión, se detecta y las tramas se retransmiten.
+
+
